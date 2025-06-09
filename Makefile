@@ -12,44 +12,53 @@
 
 NAME = push_swap
 
-LIBFT_DIR = libft
-PRINTF_DIR = ft_printf
-LIBFT = $(LIBFT_DIR)/libft.a
-PRINTF = $(PRINTF_DIR)/libftprintf.a
-
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-INCLUDES = -I$(LIBFT_DIR) -I$(PRINTF_DIR)
+CFLAGS = -Wall -Wextra -Werror -g -I. -Iinclude -Ift_printf/libft -Ift_printf
+RM = rm -f
 
-SRCS = push_swap.c
-OBJS = $(SRCS:.c=.o)
+FT_DIR = ft_printf
 
-all: $(LIBFT) $(PRINTF) $(NAME)
+SRC = \
+	srcs/main.c \
+	srcs/utils.c \
+	srcs/operations.c \
+	srcs/sort.c \
+	srcs/small.c \
+	srcs/radix.c
 
-$(LIBFT):
-	@$(MAKE) -C $(LIBFT_DIR)
+OBJS = $(SRC:.c=.o)
 
-$(PRINTF):
-	@$(MAKE) -C $(PRINTF_DIR)
+INCLUDES = -Iinclude -I$(FT_DIR)/libft -I$(FT_DIR)
 
-$(NAME): $(OBJS) $(LIBFT) $(PRINTF)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBFT) $(PRINTF)
+all: $(FT_DIR)/libft/libft.a $(FT_DIR)/libftprintf.a $(NAME)
 
-%.o: %.c push_swap.h
+$(FT_DIR)/libft/libft.a:
+	$(MAKE) -C $(FT_DIR)/libft
+
+$(FT_DIR)/libftprintf.a:
+	$(MAKE) -C $(FT_DIR)
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) \
+		$(FT_DIR)/libft/libft.a $(FT_DIR)/libftprintf.a \
+		-o $(NAME)
+
+%.o: %.c include/push_swap.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
-	@$(MAKE) -C $(LIBFT_DIR) clean
-	@$(MAKE) -C $(PRINTF_DIR) clean
+	$(RM) $(OBJS)
+	@$(MAKE) -C $(FT_DIR)/libft clean
+	@$(MAKE) -C $(FT_DIR) clean
 
 fclean: clean
-	rm -f $(NAME)
-	rm -f $(LIBFT)
-	rm -f $(PRINTF)
-	@$(MAKE) -C $(LIBFT_DIR) fclean
-	@$(MAKE) -C $(PRINTF_DIR) fclean
+	$(RM) $(NAME)
+	$(RM) $(FT_DIR)/libft/libft.a
+	$(RM) $(FT_DIR)/libftprintf.a
+	@$(MAKE) -C $(FT_DIR)/libft fclean
+	@$(MAKE) -C $(FT_DIR) fclean
 
 re: fclean all
 
 .PHONY: all clean fclean re
+

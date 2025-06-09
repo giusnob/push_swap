@@ -13,8 +13,13 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft/libft.h"
 # include "ft_printf/ft_printf.h"
+# include <stdbool.h>
+# include <stdlib.h>
+# include <limits.h>
+
+/* Parsing, validazione, compressione dei valori in A[0..n-1] */
+int    *parse_and_index(int argc, char **argv, int *n);
 
 /* Utility functions */
 void    print_error_and_exit(void);
@@ -29,9 +34,10 @@ void    rra(int *arr, int n);
 void    push(int *src, int *slen, int *dst, int *dlen, char *op);
 
 /* Small-case handler */
-void    handle_small(int *A, int n);
+void    handle_small(int *A, int *B, int *lenA, int *lenB);
 
 /* Selection sort for coordinate compression */
 void    sort_int_array(int *arr, int n);
+void    radix_sort(int *A, int n);
 
 #endif // PUSH_SWAP_H
