@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ginobile <ginobile@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/12 15:51:03 by ginobile          #+#    #+#             */
+/*   Updated: 2025/06/12 15:51:33 by ginobile         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int main(int argc, char **argv)
@@ -5,7 +17,7 @@ int main(int argc, char **argv)
     int *A;
     int *B;
     int  n;
-    int  lenA;
+    int  lenA;./push_swap 3 2 1 0 | ./checker_linux 3 2 1 0
     int  lenB;
 
     A = parse_and_index(argc, argv, &n);
