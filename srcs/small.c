@@ -6,64 +6,56 @@
 /*   By: ginobile <ginobile@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:51:54 by ginobile          #+#    #+#             */
-/*   Updated: 2025/06/12 15:51:56 by ginobile         ###   ########.fr       */
+/*   Updated: 2025/06/15 15:18:02 by ginobile         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "push_swap.h"
 
-static void sort_three(int *A)
+static void	sort_three(int *a)
 {
-    if (A[0] > A[1] && A[1] < A[2] && A[0] < A[2])
-        sa(A);
-    else if (A[0] > A[1] && A[1] > A[2])
-    {
-        sa(A);
-        rra(A, 3);
-    }
-    else if (A[0] > A[1] && A[1] < A[2])
-        ra(A, 3);
-    else if (A[0] < A[1] && A[1] > A[2] && A[0] < A[2])
-    {
-        sa(A);
-        ra(A, 3);
-    }
-    else if (A[0] < A[1] && A[1] > A[2])
-        rra(A, 3);
+	if (a[0] > a[1] && a[1] < a[2] && a[0] < a[2])
+		sa(a);
+	else if (a[0] > a[1] && a[1] > a[2])
+	{
+		sa(a);
+		rra(a, 3);
+	}
+	else if (a[0] > a[1] && a[1] < a[2])
+		ra(a, 3);
+	else if (a[0] < a[1] && a[1] > a[2] && a[0] < a[2])
+	{
+		sa(a);
+		ra(a, 3);
+	}
+	else if (a[0] < a[1] && a[1] > a[2])
+		rra(a, 3);
 }
 
-void handle_small(int *A, int *B, int *lenA, int *lenB)
+void	handle_small(int *a, int *b, int *len_a, int *len_b)
 {
-    int idx;
-    int	orig;
+	int	idx;
+	int	orig;
 
-    /* se per sbaglio venisse chiamata su array già sorted */
-    if (is_sorted(A, *lenA))
-        return;
-
-    /* spingi i minimi finché rimangono 3 in A */
-    while (*lenA > 3)
-    {
-        idx = find_min_idx(A, *lenA);
-        if (idx <= *lenA / 2)
-        {
-            while (idx-- > 0)
-                ra(A, *lenA);
-        }
-        else
-        {
-            orig = *lenA - idx;
-            while (orig-- > 0)
-                rra(A, *lenA);
-        }
-        push(A, lenA, B, lenB, "pb");
-    }
-    /* ordina i 3 restanti */
-    sort_three(A);
-
-    /* rimetti indietro tutto da B */
-    while (*lenB > 0)
-        push(B, lenB, A, lenA, "pa");
+	if (is_sorted(a, *len_a))
+		return ;
+	while (*len_a > 3)
+	{
+		idx = find_min_idx(a, *len_a);
+		if (idx <= *len_a / 2)
+		{
+			while (idx-- > 0)
+				ra(a, *len_a);
+		}
+		else
+		{
+			orig = *len_a - idx;
+			while (orig-- > 0)
+				rra(a, *len_a);
+		}
+		push(a, len_a, b, len_b, "pb");
+	}
+	sort_three(a);
+	while (*len_b > 0)
+		push(b, len_b, a, len_a, "pa");
 }
-
