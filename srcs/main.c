@@ -6,7 +6,7 @@
 /*   By: ginobile <ginobile@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:51:03 by ginobile          #+#    #+#             */
-/*   Updated: 2025/06/15 15:09:21 by ginobile         ###   ########.fr       */
+/*   Updated: 2025/06/18 20:55:31 by ginobile         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,17 @@ int	main(int argc, char **argv)
 
 	a = parse_and_index(argc, argv, &n);
 	if (is_sorted(a, n))
-	{
-		free(a);
-		return (0);
-	}
+		return (free(a), 0);
 	b = malloc(sizeof(int) * n);
 	if (!b)
+	{
+		free(a);
 		print_error_and_exit();
+	}
 	len_a = n;
 	len_b = 0;
 	if (n <= 5)
-	{
-		handle_small(a, b, &len_a, &len_b);
-		free(b);
-		free(a);
-		return (0);
-	}
+		return (handle_small(a, b, &len_a, &len_b), free(b), free(a), 0);
 	radix_sort(a, n);
-	free(b);
-	free(a);
-	return (0);
+	return (free(b), free(a), 0);
 }

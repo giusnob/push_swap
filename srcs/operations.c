@@ -6,7 +6,7 @@
 /*   By: ginobile <ginobile@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:51:17 by ginobile          #+#    #+#             */
-/*   Updated: 2025/06/15 15:15:10 by ginobile         ###   ########.fr       */
+/*   Updated: 2025/06/18 15:18:29 by ginobile         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,26 +56,26 @@ void	rra(int *arr, int n)
 	ft_putendl_fd("rra", 1);
 }
 
-void	push(int *src, int *slen, int *dst, int *dlen, char *op)
+void	push(t_stack src, t_stack dst, char *op)
 {
 	int	i;
 
-	if (*slen <= 0)
+	if (*src.len <= 0)
 		return ;
-	i = *dlen;
+	i = *dst.len;
 	while (i > 0)
 	{
-		dst[i] = dst[i - 1];
+		dst.arr[i] = dst.arr[i - 1];
 		i--;
 	}
-	dst[0] = src[0];
-	(*dlen)++;
+	dst.arr[0] = src.arr[0];
+	(*dst.len)++;
 	i = 0;
-	while (i < *slen - 1)
+	while (i < *src.len - 1)
 	{
-		src[i] = src[i + 1];
+		src.arr[i] = src.arr[i + 1];
 		i++;
 	}
-	(*slen)--;
+	(*src.len)--;
 	ft_putendl_fd(op, 1);
 }

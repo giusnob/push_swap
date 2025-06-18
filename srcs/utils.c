@@ -6,7 +6,7 @@
 /*   By: ginobile <ginobile@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:52:13 by ginobile          #+#    #+#             */
-/*   Updated: 2025/06/15 15:21:58 by ginobile         ###   ########.fr       */
+/*   Updated: 2025/06/18 20:34:12 by ginobile         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ bool	is_integer(const char *str)
 			return (false);
 		i++;
 	}
-	n = ft_atoi(str);
+	n = ft_atol(str);
 	if (n < INT_MIN || n > INT_MAX)
 		return (false);
 	return (true);
@@ -70,54 +70,4 @@ int	find_min_idx(int *arr, int n)
 		i++;
 	}
 	return (min_idx);
-}
-
-int	*parse_and_index(int argc, char **argv, int *n)
-{
-	int	*a;
-	int	*s;
-	int	i;
-	int	j;
-
-	if (argc < 2)
-		exit(0);
-	*n = argc - 1;
-	a = malloc(sizeof(int) * (*n));
-	if (!a)
-		print_error_and_exit();
-	i = 0;
-	while (i < *n)
-	{
-		if (!is_integer(argv[i + 1]))
-			print_error_and_exit();
-		a[i] = ft_atoi(argv[i + 1]);
-		i++;
-	}
-	s = malloc(sizeof(int) * (*n));
-	if (!s)
-		print_error_and_exit();
-	i = 0;
-	while (i < *n)
-	{
-		s[i] = a[i];
-		i++;
-	}
-	sort_int_array(s, *n);
-	i = 0;
-	while (i < *n)
-	{
-		j = 0;
-		while (j < *n)
-		{
-			if (a[i] == s[j])
-			{
-				a[i] = j;
-				break ;
-			}
-			j++;
-		}
-		i++;
-	}
-	free(s);
-	return (a);
 }

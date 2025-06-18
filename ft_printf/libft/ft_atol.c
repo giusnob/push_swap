@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ginobile <ginobile@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 18:13:02 by ginobile          #+#    #+#             */
-/*   Updated: 2025/06/18 20:24:10 by ginobile         ###   ########.fr       */
+/*   Created: 2025/06/18 20:23:18 by ginobile          #+#    #+#             */
+/*   Updated: 2025/06/18 20:30:50 by ginobile         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ static int	ft_isspace(int c)
 		|| c == '\t' || c == '\v');
 }
 
-int	ft_atoi(const char *nptr)
+long	ft_atol(const char *nptr)
 {
-	int	i;
-	int	z;
-	int	sign;
+	long	i;
+	int		z;
+	int		sign;
 
 	i = 0;
 	z = 0;
@@ -48,29 +48,3 @@ int	ft_atoi(const char *nptr)
 	}
 	return (i * sign);
 }
-
-/* int	main(void)
-{
-    const char *test_cases[] = {
-        "42",
-        "   -42",
-        "   +42",
-        "4193 with words",
-        "words and 987",
-        "-2147483648",
-        "2147483647",
-        "9223372036854775807", // Overflow
-        "",
-        "0",
-        NULL
-    };
-
-    int i = 0;
-    while (test_cases[i] != NULL)
-    {
-        printf("Input: \"%s\"\n", test_cases[i]);
-        printf("ft_atoi: %d | atoi: %d\n\n", ft_atoi(test_cases[i]));
-        i++;
-    }
-    return 0;
-} */

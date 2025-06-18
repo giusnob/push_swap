@@ -6,7 +6,7 @@
 #    By: ginobile <ginobile@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/08 20:46:15 by ginobile          #+#    #+#              #
-#    Updated: 2025/06/08 20:49:47 by ginobile         ###   ########.fr        #
+#    Updated: 2025/06/18 17:38:37 by ginobile         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC = \
 	srcs/operations.c \
 	srcs/sort.c \
 	srcs/small.c \
+	srcs/parsing.c \
 	srcs/radix.c
 
 OBJS = $(SRC:.c=.o)
